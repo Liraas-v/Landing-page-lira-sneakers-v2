@@ -176,3 +176,180 @@ function ParticleBackground({ id }) {
 /* ═══════════════════════════════════════════════════════════════
    BEFORE / AFTER SLIDER
    ═══════════════════════════════════════════════════════════════ */
+function BeforeAfterSlider({ beforeSrc, afterSrc }) {
+  const wrapRef = useRef(null);
+  const dragRef = useRef(false);
+  const [pos, setPos] = useState(50);
+
+  const pctFrom = useCallback((e) => {
+    const rc = wrapRef.current.getBoundingClientRect();
+    const cx = (e.touches ? e.touches[0].clientX : e.clientX) - rc.left;
+    return Math.min(100, Math.max(0, (cx / rc.width) * 100));
+  }, []);
+
+  const onMove = useCallback(
+    (e) => {
+      if (dragRef.current) setPos(pctFrom(e));
+    },
+    [pctFrom],
+  );
+  const onUp = useCallback(() => {
+    dragRef.current = false;
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchmove", onMove, { passive: true });
+    window.addEventListener("touchend", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchmove", onMove);
+      window.removeEventListener("touchend", onUp);
+    };
+  }, [onMove, onUp]);
+
+  return (
+    <div
+      ref={wrapRef}
+      onMouseDown={(e) => {
+        dragRef.current = true;
+        setPos(pctFrom(e));
+      }}
+      onTouchStart={(e) => {
+        dragRef.current = true;
+        setPos(pctFrom(e));
+      }}
+      style={{
+        position: "relative",
+        width: "100%",
+        aspectRatio: "3/4",
+        borderRadius: 22,
+        overflow: "hidden",
+        cursor: "col-resize",
+        userSelect: "none",
+        boxShadow: "0 12px 48px rgba(0,0,0,0.55), 0 0 0 1px var(--border)",
+      }}
+    >
+      <img
+        src={afterSrc}
+        alt="Depois"
+        draggable="false"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          clipPath: `inset(0 ${100 - pos}% 0 0)`,
+        }}
+      >
+        <img
+          src={beforeSrc}
+          alt="Antes"
+          draggable="false"
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left: `${pos}%`,
+          transform: "translateX(-50%)",
+          width: 2,
+          background: "var(--gold)",
+          boxShadow: "0 0 16px rgba(245,200,66,0.7)",
+          pointerEvents: "none",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+            width: 46,
+            height: 46,
+            borderRadius: "50%",
+            background: "var(--gold)",
+            color: "#0a0a0a",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontWeight: 900,
+            fontSize: 18,
+            boxShadow:
+              "0 0 24px rgba(245,200,66,0.6),0 2px 10px rgba(0,0,0,0.5)",
+            border: "3px solid rgba(255,255,255,0.25)",
+          }}
+        >
+          ⇆
+        </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: 16,
+          left: 16,
+          pointerEvents: "none",
+        }}
+      >
+        <span
+          style={{
+            fontSize: 11,
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "0.14em",
+            background: "rgba(10,10,10,0.72)",
+            color: "#ff6b6b",
+            padding: "5px 12px",
+            borderRadius: 99,
+            border: "1px solid rgba(255,107,107,0.4)",
+            backdropFilter: "blur(4px)",
+          }}
+        >
+          Antes
+        </span>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: 16,
+          right: 16,
+          pointerEvents: "none",
+        }}
+      >
+        <span
+          style={{
+            fontSize: 11,
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "0.14em",
+            background: "rgba(10,10,10,0.72)",
+            color: "var(--gold)",
+            padding: "5px 12px",
+            borderRadius: 99,
+            border: "1px solid var(--gold-border)",
+            backdropFilter: "blur(4px)",
+          }}
+        >
+          Depois
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAROUSEL 3D — Three.js CSS3DRenderer
+   Tênis Gucci real flutua no centro; depoimentos orbitam em volta.
+   ═══════════════════════════════════════════════════════════════ */
