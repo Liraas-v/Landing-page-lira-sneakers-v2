@@ -1920,3 +1920,246 @@ function SecaoDepoimentos() {
 /* ═══════════════════════════════════════════════════════════════
    LOCALIZAÇÃO — partículas no fundo
    ═══════════════════════════════════════════════════════════════ */
+function SecaoLocalizacao() {
+  return (
+    <section
+      id="localizacao"
+      className="landing-section-pad"
+      style={{ position: "relative", overflow: "hidden", padding: "80px 0", background: "var(--bg)" }}
+    >
+      <ParticleBackground id="localizacao" />
+      <div
+        className="landing-inner-pad"
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "0 24px",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <p
+            style={{
+              fontSize: 11,
+              fontWeight: 900,
+              color: "var(--gold)",
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
+              marginBottom: 10,
+            }}
+          >
+            Onde estamos
+          </p>
+          <h2
+            className="bebas section-title reveal reveal-delay-1"
+            style={{
+              fontSize: "clamp(36px,5vw,52px)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            LOCALIZAÇÃO & ATENDIMENTO
+          </h2>
+        </div>
+        <div
+          className="landing-loc-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 32,
+            alignItems: "start",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            <div
+              style={{
+                background: "var(--bg)",
+                border: "1px solid var(--border)",
+                borderRadius: 18,
+                padding: "24px 26px",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  marginBottom: 14,
+                }}
+              >
+                <Icon
+                  name="map-pin"
+                  size={18}
+                  style={{ color: "var(--gold)" }}
+                />
+                <p
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 900,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  Área de Atendimento
+                </p>
+              </div>
+              <p
+                style={{
+                  fontSize: 13,
+                  color: "var(--text-muted)",
+                  lineHeight: 1.65,
+                  marginBottom: 16,
+                }}
+              >
+                {LOCATION.descricao}
+              </p>
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "var(--green-dim)",
+                  border: "1px solid var(--green-border)",
+                  borderRadius: 10,
+                  padding: "8px 14px",
+                }}
+              >
+                <Icon
+                  name="check-circle"
+                  size={14}
+                  style={{ color: "var(--green)" }}
+                />
+                <span
+                  style={{
+                    fontSize: 13,
+                    color: "var(--green)",
+                    fontWeight: 700,
+                  }}
+                >
+                  {LOCATION.coletaGratis}
+                </span>
+              </div>
+            </div>
+            <div
+              style={{
+                background: "var(--bg)",
+                border: "1px solid var(--border)",
+                borderRadius: 18,
+                padding: "24px 26px",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  marginBottom: 16,
+                }}
+              >
+                <Icon name="clock" size={18} style={{ color: "var(--gold)" }} />
+                <p
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 900,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  Horário de Atendimento
+                </p>
+              </div>
+              {LOCATION.horarios.map(({ dia, hora }) => (
+                <div
+                  key={dia}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "9px 0",
+                    borderBottom: "1px solid var(--border)",
+                  }}
+                >
+                  <span style={{ fontSize: 13, color: "var(--text-muted)" }}>
+                    {dia}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: "var(--gold)",
+                    }}
+                  >
+                    {hora}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div
+            style={{
+              background:
+                "radial-gradient(ellipse at 0% 0%,rgba(245,200,66,.1) 0%,var(--bg) 60%)",
+              border: "1px solid var(--gold-border)",
+              borderRadius: 18,
+              padding: "28px 26px",
+            }}
+          >
+            <p
+              className="bebas"
+              style={{ fontSize: 26, letterSpacing: "0.06em", marginBottom: 8 }}
+            >
+              FALE COM A GENTE
+            </p>
+            <p
+              style={{
+                fontSize: 13,
+                color: "var(--text-muted)",
+                lineHeight: 1.6,
+                marginBottom: 22,
+              }}
+            >
+              Tire dúvidas, solicite um orçamento ou agende a coleta.
+              Respondemos em até 1 hora.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <button
+                className="btn btn-gold"
+                style={{
+                  width: "100%",
+                  justifyContent: "center",
+                  fontSize: 14,
+                  padding: "14px",
+                }}
+                onClick={() =>
+                  abrirWpp("Olá! Gostaria de solicitar um orçamento.")
+                }
+              >
+                <Icon name="message-circle" size={18} /> Solicitar orçamento via
+                WhatsApp
+              </button>
+              <button
+                className="btn btn-ghost"
+                style={{
+                  width: "100%",
+                  justifyContent: "center",
+                  fontSize: 13,
+                  padding: "12px",
+                }}
+                onClick={() =>
+                  abrirWpp(
+                    "Olá! Gostaria de saber mais sobre a coleta do meu tênis.",
+                  )
+                }
+              >
+                <Icon name="package" size={16} /> Agendar coleta
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════ */
