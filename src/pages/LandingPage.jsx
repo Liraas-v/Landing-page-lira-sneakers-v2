@@ -834,3 +834,203 @@ function Carousel3D() {
 /* ═══════════════════════════════════════════════════════════════
    NAVBAR
    ═══════════════════════════════════════════════════════════════ */
+function Navbar() {
+  const [menuAberto, setMenuAberto] = useState(false);
+  const { theme } = useApp();
+  const logoSrc = getBrandLogo(theme);
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMenuAberto(false);
+  };
+  return (
+    <header
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 200,
+        background: "var(--nav-bg)",
+        borderBottom: "1px solid var(--border)",
+        backdropFilter: "blur(12px)",
+      }}
+    >
+      <style>{`
+        @media (max-width: 768px) {
+          .navbar-links { display: none !important; }
+          .navbar-actions { display: none !important; }
+          .navbar-hamburger { display: flex !important; }
+        }
+        @media (min-width: 769px) {
+          .navbar-hamburger { display: none !important; }
+          .navbar-mobile-menu { display: none !important; }
+        }
+      `}</style>
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "0 24px",
+          height: 64,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <button
+          onClick={() => scrollTo("hero")}
+          style={{ display: "flex", alignItems: "center", gap: 10, background: "none", border: "none", cursor: "pointer", padding: 0 }}
+        >
+          <img
+            src={logoSrc}
+            alt="Lira Sneakers"
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 8,
+              objectFit: "cover",
+              background: "var(--logo-tile)",
+              border: "1px solid var(--gold-border)",
+            }}
+            onError={(e) => {
+              e.target.style.display = "none";
+            }}
+          />
+          <span
+            className="bebas"
+            style={{ fontSize: 20, letterSpacing: "0.1em" }}
+          >
+            <span style={{ color: "var(--text)" }}>LIRA </span>
+            <span className="shimmer-text">SNEAKERS</span>
+          </span>
+        </button>
+        <nav className="navbar-links" style={{ display: "flex", gap: 24, alignItems: "center" }}>
+          {[
+            ["servicos-section", "Serviços"],
+            ["antes-depois", "Antes & Depois"],
+            ["depoimentos", "Depoimentos"],
+            ["localizacao", "Localização"],
+          ].map(([id, label]) => (
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              style={{
+                background: "none",
+                border: "none",
+                color: "var(--text-muted)",
+                fontSize: 13,
+                fontWeight: 600,
+                cursor: "pointer",
+                transition: "color .2s",
+                padding: 0,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "var(--gold)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "var(--text-muted)";
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+        <div className="navbar-actions" style={{ display: "flex", gap: 10, alignItems: "center" }}>
+          <ThemeToggle compact />
+          <button
+            className="btn btn-gold"
+            style={{ fontSize: 12, padding: "8px 16px" }}
+            onClick={() =>
+              abrirWpp(
+                "Olá! Gostaria de solicitar um orçamento para o meu tênis.",
+              )
+            }
+          >
+            <Icon name="message-circle" size={14} /> Orçamento grátis
+          </button>
+        </div>
+        <button
+          className="navbar-hamburger"
+          onClick={() => setMenuAberto((o) => !o)}
+          aria-label="Menu"
+          style={{
+            background: "none",
+            border: "1px solid var(--border)",
+            borderRadius: 8,
+            color: "var(--text-muted)",
+            cursor: "pointer",
+            display: "none",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 38,
+            height: 38,
+          }}
+        >
+          <Icon name={menuAberto ? "x" : "menu"} size={20} />
+        </button>
+      </div>
+      {menuAberto && (
+        <div
+          className="navbar-mobile-menu"
+          style={{
+            position: "absolute",
+            top: 64,
+            left: 0,
+            right: 0,
+            background: "var(--nav-bg)",
+            backdropFilter: "blur(12px)",
+            borderBottom: "1px solid var(--border)",
+            zIndex: 199,
+            padding: "16px 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 4,
+          }}
+        >
+          {[
+            ["servicos-section", "Serviços"],
+            ["antes-depois", "Antes & Depois"],
+            ["depoimentos", "Depoimentos"],
+            ["localizacao", "Localização"],
+          ].map(([id, label]) => (
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              style={{
+                background: "none",
+                border: "none",
+                borderBottom: "1px solid var(--border)",
+                color: "var(--text-muted)",
+                fontSize: 14,
+                fontWeight: 600,
+                cursor: "pointer",
+                textAlign: "left",
+                padding: "12px 0",
+                transition: "color .2s",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "var(--gold)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-muted)"; }}
+            >
+              {label}
+            </button>
+          ))}
+          <div style={{ display: "flex", gap: 10, paddingTop: 12 }}>
+            <button
+              className="btn btn-gold"
+              style={{ fontSize: 12, flex: 1, justifyContent: "center" }}
+              onClick={() => {
+                abrirWpp("Olá! Gostaria de solicitar um orçamento para o meu tênis.");
+                setMenuAberto(false);
+              }}
+            >
+              <Icon name="message-circle" size={14} /> Orçamento grátis
+            </button>
+            <ThemeToggle compact />
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO — partículas em toda a seção
+   ═══════════════════════════════════════════════════════════════ */
