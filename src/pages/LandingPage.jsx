@@ -1364,3 +1364,258 @@ function Hero() {
 /* ═══════════════════════════════════════════════════════════════
    SERVIÇOS — partículas no fundo
    ═══════════════════════════════════════════════════════════════ */
+function SecaoServicos() {
+  const categorias = ["Todos", ...new Set(SERVICOS.map((s) => s.categoria))];
+  const [filtro, setFiltro] = useState("Todos");
+  const lista =
+    filtro === "Todos"
+      ? SERVICOS
+      : SERVICOS.filter((s) => s.categoria === filtro);
+  return (
+    <section
+      id="servicos-section"
+      style={{ position: "relative", overflow: "hidden", padding: "80px 0", background: "var(--bg)" }}
+    >
+      <ParticleBackground id="servicos" />
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "0 24px",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <p
+            style={{
+              fontSize: 11,
+              fontWeight: 900,
+              color: "var(--gold)",
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
+              marginBottom: 10,
+            }}
+          >
+            O que fazemos
+          </p>
+          <h2
+            className="bebas section-title reveal reveal-delay-1"
+            style={{
+              fontSize: "clamp(36px,5vw,52px)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            NOSSOS SERVIÇOS
+          </h2>
+          <p
+            style={{
+              fontSize: 15,
+              color: "var(--text-muted)",
+              marginTop: 12,
+              maxWidth: 480,
+              margin: "12px auto 0",
+            }}
+          >
+            Preços a partir de — valor final confirmado após avaliação do estado
+            do tênis.
+          </p>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            gap: 8,
+            justifyContent: "center",
+            flexWrap: "wrap",
+            marginBottom: 36,
+          }}
+        >
+          {categorias.map((c) => (
+            <button
+              key={c}
+              onClick={() => setFiltro(c)}
+              style={{
+                padding: "8px 18px",
+                borderRadius: 99,
+                fontSize: 12,
+                fontWeight: 800,
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                cursor: "pointer",
+                transition: "all .18s",
+                border: "1px solid",
+                background: filtro === c ? "var(--gold)" : "transparent",
+                borderColor: filtro === c ? "var(--gold)" : "var(--border)",
+                color:
+                  filtro === c ? "var(--text-inverse)" : "var(--text-muted)",
+              }}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))",
+            gap: 16,
+            marginBottom: 40,
+          }}
+        >
+          {lista.map((s, i) => (
+            <div
+              key={s.id}
+              className="feature-card"
+              style={{
+                background: "var(--bg)",
+                border: "1px solid var(--border)",
+                borderRadius: 16,
+                padding: "20px 22px",
+                transition: "all .2s",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 11,
+                  fontWeight: 900,
+                  color: "var(--gold)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.15em",
+                  background: "var(--gold-dim)",
+                  padding: "3px 8px",
+                  borderRadius: 99,
+                  border: "1px solid var(--gold-border)",
+                }}
+              >
+                {s.categoria}
+              </span>
+              <p
+                style={{
+                  fontSize: 15,
+                  fontWeight: 900,
+                  color: "var(--text)",
+                  marginTop: 10,
+                  marginBottom: 6,
+                }}
+              >
+                {s.titulo}
+              </p>
+              <p
+                style={{
+                  fontSize: 13,
+                  color: "var(--text-muted)",
+                  lineHeight: 1.5,
+                  marginBottom: 14,
+                }}
+              >
+                {s.desc}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-end",
+                  flexWrap: "wrap",
+                  gap: 8,
+                }}
+              >
+                <div>
+                  <p
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 900,
+                      color: "var(--gold)",
+                    }}
+                  >
+                    A partir de R$ {s.preco},00
+                  </p>
+                  {PRAZOS[s.titulo] && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 4,
+                        marginTop: 2,
+                      }}
+                    >
+                      <Icon
+                        name="clock"
+                        size={11}
+                        style={{ color: "var(--text-dim)" }}
+                      />
+                      <span
+                        style={{
+                          fontSize: 11,
+                          color: "var(--text-dim)",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {PRAZOS[s.titulo]}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <button
+                  className="btn btn-gold"
+                  style={{ fontSize: 11, padding: "8px 14px" }}
+                  onClick={() =>
+                    abrirWpp(
+                      `Olá! Gostaria de um orçamento para: ${s.titulo} (a partir de R$ ${s.preco},00).`,
+                    )
+                  }
+                >
+                  Solicitar
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            background: "var(--gold-dim)",
+            border: "1px solid var(--gold-border)",
+            borderRadius: 20,
+            padding: "28px 32px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 16,
+          }}
+        >
+          <div>
+            <p
+              style={{
+                fontSize: 14,
+                fontWeight: 900,
+                color: "var(--gold)",
+                marginBottom: 4,
+              }}
+            >
+              Orçamento rápido pelo WhatsApp
+            </p>
+            <p style={{ fontSize: 13, color: "var(--text-muted)" }}>
+              Envie fotos do seu tênis e receba um orçamento em minutos.
+              Atendimento personalizado para cada caso.
+            </p>
+          </div>
+          <button
+            className="btn btn-gold"
+            style={{ fontSize: 13, padding: "12px 24px", flexShrink: 0 }}
+            onClick={() =>
+              abrirWpp(
+                "Olá! Gostaria de solicitar um orçamento para o meu tênis.",
+              )
+            }
+          >
+            <Icon name="message-circle" size={16} /> Solicitar orçamento
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANTES & DEPOIS — partículas no fundo
+   ═══════════════════════════════════════════════════════════════ */
