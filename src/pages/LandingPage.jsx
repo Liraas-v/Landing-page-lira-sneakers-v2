@@ -1034,3 +1034,333 @@ function Navbar() {
 /* ═══════════════════════════════════════════════════════════════
    HERO — partículas em toda a seção
    ═══════════════════════════════════════════════════════════════ */
+function Hero() {
+  const { theme } = useApp();
+  const logoSrc = getBrandLogo(theme);
+  return (
+    <>
+    <section
+      id="hero"
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        background: "var(--bg)",
+        minHeight: "100vh",
+      }}
+    >
+      <ParticleBackground id="hero" />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(ellipse at 20% 55%,rgba(245,200,66,.07) 0%,transparent 55%)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          pointerEvents: "none",
+          backgroundImage:
+            "radial-gradient(circle,rgba(245,200,66,.04) 1px,transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      <div style={{ position: "relative", zIndex: 2 }}>
+        <div
+          className="hero-panel reveal reveal-delay-1"
+          style={{
+            borderBottom: "1px solid var(--border)",
+            padding: "52px 24px 48px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 20,
+            background:
+              "radial-gradient(ellipse at 50% 0%,rgba(245,200,66,.08) 0%,transparent 70%)",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              background: "var(--gold-dim)",
+              border: "1px solid var(--gold-border)",
+              borderRadius: 99,
+              padding: "5px 14px",
+            }}
+          >
+            <span
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "var(--gold)",
+                display: "block",
+              }}
+            />
+            <span
+              style={{
+                fontSize: 11,
+                fontWeight: 900,
+                color: "var(--gold)",
+                textTransform: "uppercase",
+                letterSpacing: "0.18em",
+              }}
+            >
+              Sneaker Spa Profissional · São Paulo, SP
+            </span>
+          </div>
+
+          <div style={{ position: "relative" }}>
+            <div
+              style={{
+                position: "absolute",
+                inset: -24,
+                background:
+                  "radial-gradient(circle,rgba(245,200,66,.18) 0%,transparent 70%)",
+                borderRadius: "50%",
+                filter: "blur(14px)",
+              }}
+            />
+            <img
+              src={logoSrc}
+              alt="Lira Sneakers"
+              className="anim-float"
+              style={{
+                width: 240,
+                height: 240,
+                borderRadius: 42,
+                objectFit: "contain",
+                objectPosition: "center 40%",
+                background: "var(--logo-tile)",
+                border: "2px solid var(--gold-border)",
+                boxShadow:
+                  "0 0 52px rgba(245,200,66,.24),0 8px 32px rgba(0,0,0,.55)",
+                position: "relative",
+                zIndex: 1,
+              }}
+              onError={(e) => {
+                e.target.style.display = "none";
+              }}
+            />
+          </div>
+
+          <div style={{ textAlign: "center" }}>
+            <p
+              className="bebas"
+              style={{
+                fontSize: "clamp(52px,10vw,96px)",
+                letterSpacing: "0.06em",
+                lineHeight: 0.9,
+              }}
+            >
+              <span style={{ color: "var(--text)" }}>LIRA </span>
+              <span className="shimmer-text">SNEAKERS</span>
+            </p>
+            <p
+              style={{
+                fontSize: 13,
+                color: "var(--text-muted)",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.28em",
+                marginTop: 10,
+              }}
+            >
+              Sneaker Spa &nbsp;·&nbsp; Restauração &nbsp;·&nbsp; Proteção
+            </p>
+          </div>
+
+          <div
+            className="reveal reveal-delay-2"
+            style={{
+              display: "flex",
+              gap: 12,
+              flexWrap: "wrap",
+              justifyContent: "center",
+              marginTop: 8,
+            }}
+          >
+            <button
+              className="btn btn-gold"
+              style={{ fontSize: 13, padding: "13px 28px" }}
+              onClick={() =>
+                abrirWpp(
+                  "Olá! Gostaria de solicitar um orçamento para o meu tênis.",
+                )
+              }
+            >
+              <Icon name="message-circle" size={16} /> Solicitar orçamento
+              grátis
+            </button>
+            <button
+              className="btn btn-ghost"
+              style={{ fontSize: 13, padding: "13px 22px" }}
+              onClick={() =>
+                document
+                  .getElementById("servicos-section")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              <Icon name="scissors" size={16} /> Ver serviços
+            </button>
+          </div>
+
+          <div
+            className="reveal reveal-delay-3"
+            style={{
+              display: "flex",
+              gap: 20,
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {[
+              ["check-circle", "Orçamento sem compromisso"],
+              ["check-circle", "Coleta e entrega disponível"],
+              ["check-circle", "Garantia de satisfação"],
+            ].map(([icon, txt]) => (
+              <div
+                key={txt}
+                style={{ display: "flex", alignItems: "center", gap: 6 }}
+              >
+                <Icon name={icon} size={13} style={{ color: "var(--green)" }} />
+                <span
+                  style={{
+                    fontSize: 13,
+                    color: "var(--text-muted)",
+                    fontWeight: 600,
+                  }}
+                >
+                  {txt}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      style={{
+        background: "var(--bg)",
+        padding: "64px 24px",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          width: "100%",
+        }}
+      >
+        <div
+          className="landing-hero-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 60,
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <h2
+              className="bebas anim-fade-up"
+              style={{
+                fontSize: "clamp(40px,6vw,72px)",
+                lineHeight: 0.9,
+                letterSpacing: "0.02em",
+                marginBottom: 20,
+              }}
+            >
+              SEUS TÊNIS
+              <br />
+              <span className="shimmer-text">MERECEM</span>
+              <br />O MELHOR
+            </h2>
+            <p
+              className="anim-fade-up-1"
+              style={{
+                fontSize: 16,
+                color: "var(--text-muted)",
+                lineHeight: 1.65,
+                maxWidth: 420,
+                marginBottom: 28,
+              }}
+            >
+              Restauração, limpeza e proteção especializada para seus
+              sneakers. Do básico ao luxo — tratamos cada par com o cuidado
+              que ele merece.
+            </p>
+            <button
+              className="btn btn-ghost anim-fade-up-2"
+              style={{ fontSize: 13, padding: "12px 22px" }}
+              onClick={() =>
+                document
+                  .getElementById("servicos-section")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              <Icon name="list" size={15} /> Ver todos os serviços
+            </button>
+          </div>
+          <div
+            className="reveal reveal-delay-2"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 14,
+            }}
+          >
+            {NUMEROS.map(({ valor, label }) => (
+              <div
+                key={label}
+                style={{
+                  background: "var(--surface)",
+                  border: "1px solid var(--border)",
+                  borderRadius: 18,
+                  padding: "22px 16px",
+                  textAlign: "center",
+                }}
+              >
+                <p
+                  className="bebas"
+                  style={{
+                    fontSize: 36,
+                    color: "var(--gold)",
+                    lineHeight: 1,
+                  }}
+                >
+                  {valor}
+                </p>
+                <p
+                  style={{
+                    fontSize: 11,
+                    color: "var(--text-dim)",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    marginTop: 6,
+                  }}
+                >
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+    </>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVIÇOS — partículas no fundo
+   ═══════════════════════════════════════════════════════════════ */
