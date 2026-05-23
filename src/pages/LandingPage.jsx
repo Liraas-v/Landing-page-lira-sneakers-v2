@@ -1619,3 +1619,234 @@ function SecaoServicos() {
 /* ═══════════════════════════════════════════════════════════════
    ANTES & DEPOIS — partículas no fundo
    ═══════════════════════════════════════════════════════════════ */
+function SecaoAntesDepois() {
+  return (
+    <section
+      id="antes-depois"
+      className="landing-section-pad"
+      style={{ position: "relative", overflow: "hidden", padding: "100px 0", background: "var(--bg)" }}
+    >
+      <ParticleBackground id="antesdepois" />
+      <div
+        className="landing-inner-pad"
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "0 24px",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 60 }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              background: "var(--gold-dim)",
+              border: "1px solid var(--gold-border)",
+              borderRadius: 99,
+              padding: "5px 14px",
+              marginBottom: 16,
+            }}
+          >
+            <span
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "var(--gold)",
+                display: "block",
+              }}
+            />
+            <span
+              style={{
+                fontSize: 11,
+                fontWeight: 900,
+                color: "var(--gold)",
+                textTransform: "uppercase",
+                letterSpacing: "0.18em",
+              }}
+            >
+              Resultados reais · pares reais
+            </span>
+          </div>
+          <h2
+            className="bebas reveal reveal-delay-1 section-title"
+            style={{
+              fontSize: "clamp(36px,5vw,64px)",
+              letterSpacing: "0.04em",
+              display: "block",
+            }}
+          >
+            ANTES & <span className="shimmer-text">DEPOIS</span>
+          </h2>
+          <p
+            style={{
+              fontSize: 15,
+              color: "var(--text-muted)",
+              maxWidth: 500,
+              margin: "16px auto 0",
+              lineHeight: 1.65,
+            }}
+          >
+            Arraste o slider para ver a transformação. Cada par é tratado com os
+            produtos e técnicas certas.
+          </p>
+        </div>
+
+        <div
+          className="landing-ad-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 52,
+            alignItems: "center",
+          }}
+        >
+          <div className="reveal reveal-delay-1">
+            <BeforeAfterSlider
+              beforeSrc="/antes.jpeg"
+              afterSrc="/depois.jpeg"
+            />
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: 11,
+                color: "var(--text-dim)",
+                marginTop: 14,
+                letterSpacing: "0.1em",
+              }}
+            >
+              ← Arraste o slider para revelar →
+            </p>
+          </div>
+          <div
+            className="reveal reveal-delay-2"
+            style={{ display: "flex", flexDirection: "column", gap: 28 }}
+          >
+            <div>
+              <span
+                style={{
+                  fontSize: 11,
+                  fontWeight: 900,
+                  color: "var(--gold)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.16em",
+                }}
+              >
+                Nike Court Vision — Limpeza Completa
+              </span>
+              <h3
+                className="bebas"
+                style={{
+                  fontSize: "clamp(28px,3.5vw,44px)",
+                  lineHeight: 1.1,
+                  marginTop: 10,
+                  marginBottom: 14,
+                }}
+              >
+                De destruído a<br />
+                <span style={{ color: "var(--gold)" }}>novo de fábrica</span>
+              </h3>
+              <p
+                style={{
+                  fontSize: 15,
+                  color: "var(--text-muted)",
+                  lineHeight: 1.75,
+                }}
+              >
+                Limpeza profunda, remoção de manchas oxidadas, condicionamento
+                do couro e clarificação da sola. Resultado em 3 dias.
+              </p>
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 12,
+              }}
+            >
+              {[
+                { icon: "clock", label: "Prazo", value: "3 dias úteis" },
+                {
+                  icon: "droplets",
+                  label: "Processo",
+                  value: "Limpeza profunda",
+                },
+                {
+                  icon: "shield",
+                  label: "Garantia",
+                  value: "Satisfação total",
+                },
+                {
+                  icon: "check-circle",
+                  label: "Material",
+                  value: "Couro preservado",
+                },
+              ].map(({ icon, label, value }) => (
+                <div
+                  key={label}
+                  style={{
+                    background: "var(--surface)",
+                    border: "1px solid var(--border)",
+                    borderRadius: 14,
+                    padding: "14px 16px",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      marginBottom: 6,
+                    }}
+                  >
+                    <Icon
+                      name={icon}
+                      size={14}
+                      style={{ color: "var(--gold)" }}
+                    />
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 900,
+                        color: "var(--text-dim)",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.14em",
+                      }}
+                    >
+                      {label}
+                    </span>
+                  </div>
+                  <strong style={{ fontSize: 13, color: "var(--text)" }}>
+                    {value}
+                  </strong>
+                </div>
+              ))}
+            </div>
+            <button
+              className="btn btn-gold"
+              style={{
+                fontSize: 13,
+                padding: "14px 28px",
+                alignSelf: "flex-start",
+              }}
+              onClick={() =>
+                abrirWpp(
+                  "Olá! Vi o resultado antes e depois no site e gostaria de um orçamento para o meu tênis.",
+                )
+              }
+            >
+              <Icon name="message-circle" size={16} /> Quero esse resultado
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DEPOIMENTOS — tênis Gucci + carousel 3D + partículas
+   ═══════════════════════════════════════════════════════════════ */
