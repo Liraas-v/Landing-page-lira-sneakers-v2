@@ -1850,3 +1850,73 @@ function SecaoAntesDepois() {
 /* ═══════════════════════════════════════════════════════════════
    DEPOIMENTOS — tênis Gucci + carousel 3D + partículas
    ═══════════════════════════════════════════════════════════════ */
+function SecaoDepoimentos() {
+  return (
+    <section
+      id="depoimentos"
+      style={{ position: "relative", overflow: "hidden", padding: "80px 0", background: "var(--bg)" }}
+    >
+      <ParticleBackground id="depoimentos" />
+      <div
+        style={{
+          position: "absolute",
+          top: "38%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 600,
+          height: 400,
+          pointerEvents: "none",
+          zIndex: 1,
+          background:
+            "radial-gradient(ellipse,rgba(245,200,66,.07) 0%,transparent 68%)",
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "0 24px",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 44 }}>
+          <p
+            style={{
+              fontSize: 11,
+              fontWeight: 900,
+              color: "var(--gold)",
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
+              marginBottom: 10,
+            }}
+          >
+            O que dizem nossos clientes
+          </p>
+          <h2
+            className="bebas section-title reveal reveal-delay-1"
+            style={{
+              fontSize: "clamp(36px,5vw,52px)",
+              letterSpacing: "0.04em",
+            }}
+          >
+            DEPOIMENTOS
+          </h2>
+          <p
+            style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 16 }}
+          >
+            Arraste para girar &nbsp;·&nbsp; hover para pausar &nbsp;·&nbsp;
+            clique nos dots para navegar
+          </p>
+        </div>
+      </div>
+      <div style={{ position: "relative", zIndex: 2 }}>
+        <Carousel3D />
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOCALIZAÇÃO — partículas no fundo
+   ═══════════════════════════════════════════════════════════════ */
