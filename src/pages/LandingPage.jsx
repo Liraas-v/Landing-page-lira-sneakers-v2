@@ -1209,7 +1209,7 @@ function Hero() {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              <Icon name="scissors" size={16} /> Ver serviços
+              <Icon name="list" size={16} /> Ver serviços
             </button>
           </div>
 
