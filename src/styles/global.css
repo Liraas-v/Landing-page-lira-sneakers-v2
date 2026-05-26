@@ -201,15 +201,15 @@ input:-webkit-autofill:focus {
   background: linear-gradient(
     90deg,
     #f5c842 0%,
-    #fffbea 40%,
+    #fffbea 30%,
     #f5c842 60%,
-    #c8960c 100%
+    #f5c842 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 3.5s linear infinite;
+  animation: shimmer 2.2s linear 1 forwards;
 }
 
 .progress-track {
