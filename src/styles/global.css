@@ -212,6 +212,20 @@ input:-webkit-autofill:focus {
   animation: shimmer 2.2s linear 1 forwards;
 }
 
+:root[data-theme="light"] .shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #b98916 0%,
+    #e0a820 30%,
+    #b98916 60%,
+    #b98916 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .progress-track {
   height: 7px;
   background: var(--surface-3);
