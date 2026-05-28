@@ -201,7 +201,7 @@ input:-webkit-autofill:focus {
   background: linear-gradient(
     90deg,
     #f5c842 0%,
-    #fffbea 30%,
+    #fffbea 40%,
     #f5c842 60%,
     #f5c842 100%
   );
@@ -209,7 +209,7 @@ input:-webkit-autofill:focus {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 2.2s linear 1 forwards;
+  animation: shimmer 3.5s linear 1 forwards;
 }
 
 :root[data-theme="light"] .shimmer-text {
