@@ -9,7 +9,7 @@ export default defineConfig({
         manualChunks: {
           'vendor-react':  ['react', 'react-dom'],
           'vendor-lucide': ['lucide-react'],
-          'vendor-charts': ['chart.js', 'react-chartjs-2'],
+          'vendor-three':  ['three'],
         },
       },
     },
