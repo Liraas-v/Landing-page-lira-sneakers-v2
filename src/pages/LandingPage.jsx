@@ -554,6 +554,7 @@ function Carousel3D() {
   const objectsRef = useRef([]);
   const frontRef = useRef([]);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [lightboxSrc, setLightboxSrc] = useState(null);
 
   const total = DEPOIMENTOS.length;
   const STEP = (Math.PI * 2) / total;
@@ -614,7 +615,13 @@ function Carousel3D() {
         if (hoveredRef.current === i) hoveredRef.current = null;
         pausedRef.current = false;
       });
-      cardEl.addEventListener("click", () => snapTo(i));
+      cardEl.addEventListener("click", () => {
+        if (frontRef.current[i] && d.print) {
+          setLightboxSrc(d.print);
+        } else {
+          snapTo(i);
+        }
+      });
     });
     objectsRef.current = objects;
 
@@ -895,6 +902,56 @@ function Carousel3D() {
           ›
         </button>
       </div>
+
+      {lightboxSrc && (
+        <div
+          onClick={() => setLightboxSrc(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.85)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 999,
+            cursor: "zoom-out",
+            padding: "24px",
+          }}
+        >
+          <img
+            src={lightboxSrc}
+            alt="Print de conversa ampliado"
+            style={{
+              maxWidth: "90vw",
+              maxHeight: "80vh",
+              borderRadius: 12,
+              boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+            }}
+          />
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxSrc(null);
+            }}
+            aria-label="Fechar"
+            style={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              border: "1px solid rgba(255,255,255,0.3)",
+              background: "rgba(255,255,255,0.08)",
+              color: "#fff",
+              fontSize: 20,
+              cursor: "pointer",
+            }}
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </div>
   );
 }
