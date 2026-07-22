@@ -363,46 +363,7 @@ function lerpF(a, b, t) {
   return a + (b - a) * t;
 }
 
-function buildCardEl(d) {
-  const wrap = document.createElement("div");
-  Object.assign(wrap.style, {
-    width: "300px",
-    height: "200px",
-    borderRadius: "16px",
-    padding: "18px 20px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "6px",
-    boxSizing: "border-box",
-    cursor: "pointer",
-    userSelect: "none",
-    transition: "border-color .28s,box-shadow .28s,background .28s,transform .18s",
-    background: "var(--surface-2)",
-    border: "1px solid var(--border)",
-    boxShadow: "var(--shadow-card)",
-    willChange: "transform",
-    backfaceVisibility: "hidden",
-    touchAction: "none",
-    fontFamily: "var(--font-body)",
-  });
-  const stars = document.createElement("div");
-  stars.style.cssText = "display:flex;gap:2px;flex-shrink:0;";
-  stars.innerHTML = Array.from({ length: d.nota })
-    .map(() => `<span style="color:var(--gold);font-size:14px;line-height:1;">★</span>`)
-    .join("");
-  const txt = document.createElement("p");
-  Object.assign(txt.style, {
-    fontSize: "12.5px",
-    color: "var(--text-muted)",
-    lineHeight: "1.55",
-    flex: "1",
-    overflow: "hidden",
-    display: "-webkit-box",
-    WebkitLineClamp: "3",
-    WebkitBoxOrient: "vertical",
-    margin: "0",
-  });
-  txt.textContent = `"${d.texto}"`;
+function buildBadge(d) {
   const badge = document.createElement("span");
   Object.assign(badge.style, {
     alignSelf: "flex-start",
@@ -418,6 +379,10 @@ function buildCardEl(d) {
     flexShrink: "0",
   });
   badge.textContent = d.servico;
+  return badge;
+}
+
+function buildAuthor(d) {
   const author = document.createElement("div");
   Object.assign(author.style, {
     display: "flex",
@@ -466,10 +431,68 @@ function buildCardEl(d) {
   info.appendChild(cidade);
   author.appendChild(avatar);
   author.appendChild(info);
-  wrap.appendChild(stars);
-  wrap.appendChild(txt);
-  wrap.appendChild(badge);
-  wrap.appendChild(author);
+  return author;
+}
+
+function buildTextContent(d) {
+  const frag = document.createElement("div");
+  Object.assign(frag.style, {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+    flex: "1",
+    minHeight: "0",
+  });
+  const stars = document.createElement("div");
+  stars.style.cssText = "display:flex;gap:2px;flex-shrink:0;";
+  stars.innerHTML = Array.from({ length: d.nota })
+    .map(
+      () =>
+        `<span style="color:var(--gold);font-size:14px;line-height:1;">★</span>`,
+    )
+    .join("");
+  const txt = document.createElement("p");
+  Object.assign(txt.style, {
+    fontSize: "12.5px",
+    color: "var(--text-muted)",
+    lineHeight: "1.55",
+    flex: "1",
+    overflow: "hidden",
+    display: "-webkit-box",
+    WebkitLineClamp: "3",
+    WebkitBoxOrient: "vertical",
+    margin: "0",
+  });
+  txt.textContent = `"${d.texto}"`;
+  frag.appendChild(stars);
+  frag.appendChild(txt);
+  frag.appendChild(buildBadge(d));
+  frag.appendChild(buildAuthor(d));
+  return frag;
+}
+
+function buildCardEl(d) {
+  const wrap = document.createElement("div");
+  Object.assign(wrap.style, {
+    width: "300px",
+    height: "200px",
+    borderRadius: "16px",
+    padding: "18px 20px",
+    display: "flex",
+    flexDirection: "column",
+    boxSizing: "border-box",
+    cursor: "pointer",
+    userSelect: "none",
+    transition: "border-color .28s,box-shadow .28s,background .28s,transform .18s",
+    background: "var(--surface-2)",
+    border: "1px solid var(--border)",
+    boxShadow: "var(--shadow-card)",
+    willChange: "transform",
+    backfaceVisibility: "hidden",
+    touchAction: "none",
+    fontFamily: "var(--font-body)",
+  });
+  wrap.appendChild(buildTextContent(d));
   return wrap;
 }
 
