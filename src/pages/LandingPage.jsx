@@ -2138,32 +2138,44 @@ function SecaoLocalizacao() {
               >
                 {LOCATION.descricao}
               </p>
-              <div
+              <div style={{ marginBottom: 16 }}>
+                <p
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: "var(--text)",
+                    margin: 0,
+                  }}
+                >
+                  {LOCATION.endereco} — {LOCATION.bairro}
+                </p>
+                <p
+                  style={{
+                    fontSize: 12,
+                    color: "var(--text-dim)",
+                    margin: "2px 0 0",
+                  }}
+                >
+                  {LOCATION.cidade} - {LOCATION.estado}, CEP {LOCATION.cep}
+                </p>
+              </div>
+              <a
+                href={LOCATION.googleMaps}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 8,
-                  background: "var(--green-dim)",
-                  border: "1px solid var(--green-border)",
-                  borderRadius: 10,
-                  padding: "8px 14px",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  color: "var(--gold)",
+                  textDecoration: "none",
                 }}
               >
-                <Icon
-                  name="check-circle"
-                  size={14}
-                  style={{ color: "var(--green)" }}
-                />
-                <span
-                  style={{
-                    fontSize: 13,
-                    color: "var(--green)",
-                    fontWeight: 700,
-                  }}
-                >
-                  {LOCATION.coletaGratis}
-                </span>
-              </div>
+                <Icon name="map-pin" size={14} />
+                Ver no mapa
+              </a>
             </div>
             <div
               style={{
