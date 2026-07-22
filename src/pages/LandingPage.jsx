@@ -471,19 +471,35 @@ function buildTextContent(d) {
   return frag;
 }
 
+function buildCaption(d) {
+  const cap = document.createElement("div");
+  Object.assign(cap.style, {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+    flex: "1",
+    minHeight: "0",
+    padding: "10px 16px",
+    justifyContent: "space-between",
+  });
+  cap.appendChild(buildBadge(d));
+  cap.appendChild(buildAuthor(d));
+  return cap;
+}
+
 function buildCardEl(d) {
   const wrap = document.createElement("div");
   Object.assign(wrap.style, {
     width: "300px",
     height: "200px",
     borderRadius: "16px",
-    padding: "18px 20px",
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
-    boxSizing: "border-box",
     cursor: "pointer",
     userSelect: "none",
-    transition: "border-color .28s,box-shadow .28s,background .28s,transform .18s",
+    transition:
+      "border-color .28s,box-shadow .28s,background .28s,transform .18s",
     background: "var(--surface-2)",
     border: "1px solid var(--border)",
     boxShadow: "var(--shadow-card)",
@@ -491,8 +507,34 @@ function buildCardEl(d) {
     backfaceVisibility: "hidden",
     touchAction: "none",
     fontFamily: "var(--font-body)",
+    overflow: "hidden",
   });
-  wrap.appendChild(buildTextContent(d));
+
+  const renderText = () => {
+    wrap.innerHTML = "";
+    wrap.style.padding = "18px 20px";
+    wrap.appendChild(buildTextContent(d));
+  };
+
+  if (d.print) {
+    const img = document.createElement("img");
+    img.src = d.print;
+    img.alt = `Print de conversa — ${d.nome}`;
+    img.draggable = false;
+    Object.assign(img.style, {
+      width: "100%",
+      height: "150px",
+      objectFit: "cover",
+      display: "block",
+      flexShrink: "0",
+    });
+    img.addEventListener("error", renderText);
+    wrap.appendChild(img);
+    wrap.appendChild(buildCaption(d));
+  } else {
+    renderText();
+  }
+
   return wrap;
 }
 
