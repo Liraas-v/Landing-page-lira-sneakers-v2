@@ -97,19 +97,21 @@ function ParticleBackground({ id }) {
         ctx.fillStyle = dotColor(p.a);
         ctx.fill();
 
-        for (let j = i + 1; j < pts.length; j++) {
-          const q = pts[j];
-          const ex = p.x - q.x,
-            ey = p.y - q.y;
-          const ed = Math.sqrt(ex * ex + ey * ey);
-          if (ed < CONNECT) {
-            const alpha = (1 - ed / CONNECT) * (isDark ? 0.60 : 0.32);
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = lineColor(alpha);
-            ctx.lineWidth = 0.9;
-            ctx.stroke();
+        if (!isMobile) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const q = pts[j];
+            const ex = p.x - q.x,
+              ey = p.y - q.y;
+            const ed = Math.sqrt(ex * ex + ey * ey);
+            if (ed < CONNECT) {
+              const alpha = (1 - ed / CONNECT) * (isDark ? 0.60 : 0.32);
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = lineColor(alpha);
+              ctx.lineWidth = 0.9;
+              ctx.stroke();
+            }
           }
         }
       });
