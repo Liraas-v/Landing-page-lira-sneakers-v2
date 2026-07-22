@@ -48,7 +48,10 @@ function ParticleBackground({ id }) {
     canvas.width = W;
     canvas.height = H;
 
-    const COUNT = Math.min(Math.floor((W * H) / 6000), 140);
+    const isMobile = W < 768;
+    const COUNT = isMobile
+      ? Math.min(Math.floor((W * H) / 9000), 45)
+      : Math.min(Math.floor((W * H) / 6000), 140);
     const pts = Array.from({ length: COUNT }, () => ({
       x: Math.random() * W,
       y: Math.random() * H,
