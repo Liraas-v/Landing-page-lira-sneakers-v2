@@ -552,6 +552,7 @@ function Carousel3D() {
   const hoveredRef = useRef(null);
   const clockRef = useRef(0);
   const objectsRef = useRef([]);
+  const frontRef = useRef([]);
   const [activeIdx, setActiveIdx] = useState(0);
 
   const total = DEPOIMENTOS.length;
@@ -646,6 +647,7 @@ function Carousel3D() {
         card.style.pointerEvents = depth > 0.48 ? "auto" : "none";
         const isHov = hoveredRef.current === i;
         const isFront = depth > 0.88 && hoveredRef.current === null;
+        frontRef.current[i] = isFront;
         if (isHov) {
           card.style.border = "1px solid var(--gold-border)";
           card.style.boxShadow =
