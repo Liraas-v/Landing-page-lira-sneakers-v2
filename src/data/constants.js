@@ -179,7 +179,9 @@ export const DEPOIMENTOS = [
 export const LOCATION = {
   cidade: "São Paulo",
   estado: "SP",
-  bairro: "Vila Nova Cachoeirinha",
+  bairro: "Limão",
+  endereco: "Av. Inajar de Souza, 3947",
+  cep: "02717-000",
   descricao:
     "Atendemos São Paulo e Regiões. Entre em contato pelo WhatsApp para verificar coleta e entrega na sua área.",
   raio: "São Paulo e Regiões",
@@ -189,7 +191,7 @@ export const LOCATION = {
     { dia: "Domingo", hora: "8h às 12h" },
   ],
   googleMaps:
-    "https://www.bing.com/maps/search?q=Av+Parada+Pinto%2C+737%2C+Cachoeirinha%2C+S%C3%A3o+Paulo",
+    "https://www.google.com/maps/search/?api=1&query=Av.%20Inajar%20de%20Souza%2C%203947%20-%20Lim%C3%A3o%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2002717-000",
 };
 
 export const NUMEROS = [
