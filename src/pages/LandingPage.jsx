@@ -229,6 +229,7 @@ function BeforeAfterSlider({ beforeSrc, afterSrc }) {
         overflow: "hidden",
         cursor: "col-resize",
         userSelect: "none",
+        touchAction: "none",
         boxShadow: "0 12px 48px rgba(0,0,0,0.55), 0 0 0 1px var(--border)",
       }}
     >
