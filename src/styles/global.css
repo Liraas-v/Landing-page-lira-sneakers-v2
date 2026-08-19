@@ -41,10 +41,10 @@
 }
 
 :root[data-theme="light"] {
-  --gold: #b98916;
-  --gold-dark: #8a650d;
-  --gold-dim: rgba(185, 137, 22, 0.11);
-  --gold-border: rgba(185, 137, 22, 0.28);
+  --gold: #8a650d;
+  --gold-dark: #6f4f0a;
+  --gold-dim: rgba(138, 101, 13, 0.11);
+  --gold-border: rgba(138, 101, 13, 0.28);
   --bg: #f7f4ee;
   --surface: #ffffff;
   --surface-2: #f0ece3;
@@ -215,10 +215,10 @@ input:-webkit-autofill:focus {
 :root[data-theme="light"] .shimmer-text {
   background: linear-gradient(
     90deg,
-    #b98916 0%,
-    #e0a820 30%,
-    #b98916 60%,
-    #b98916 100%
+    #8a650d 0%,
+    #a67d1a 30%,
+    #8a650d 60%,
+    #8a650d 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -760,4 +760,13 @@ main[role="main"] {
   justify-content: space-around;
   align-items: flex-end;
   padding: 8px 4px 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
