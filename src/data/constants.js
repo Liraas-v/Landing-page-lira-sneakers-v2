@@ -204,3 +204,5 @@ export const NUMEROS = [
   { valor: "3 dias", label: "Prazo médio" },
   { valor: "100%", label: "Satisfação garantida" },
 ];
+
+export const HERO_BENEFICIO = "Devolvemos a vida ao seu tênis em até 3 dias.";

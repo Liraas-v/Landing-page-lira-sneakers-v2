@@ -18,6 +18,7 @@ import {
   NUMEROS,
   FAQ_ITEMS,
   TAXA_URGENCIA,
+  HERO_BENEFICIO,
 } from "../data/constants";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1304,6 +1305,18 @@ function Hero() {
               }}
             >
               Sneaker Spa &nbsp;·&nbsp; Restauração &nbsp;·&nbsp; Proteção
+            </p>
+
+            <p
+              style={{
+                fontSize: 15,
+                color: "var(--text)",
+                fontWeight: 600,
+                marginTop: 14,
+                maxWidth: 360,
+              }}
+            >
+              {HERO_BENEFICIO}
             </p>
           </div>
 
