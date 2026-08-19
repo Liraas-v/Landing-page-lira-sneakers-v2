@@ -69,14 +69,12 @@ export const SERVICOS = [
     categoria: "Proteção",
     preco: 35,
   },
-  {
-    id: 11,
-    titulo: "Taxa de Urgência",
-    desc: "Entrega prioritária (verificar disponibilidade).",
-    categoria: "Extra",
-    preco: 30,
-  },
 ];
+
+export const TAXA_URGENCIA = {
+  desc: "Entrega prioritária em 24h para qualquer serviço acima, sujeita à disponibilidade.",
+  preco: 30,
+};
 
 export const FAQ_ITEMS = [
   {

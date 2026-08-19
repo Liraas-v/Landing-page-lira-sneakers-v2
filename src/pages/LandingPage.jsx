@@ -17,6 +17,7 @@ import {
   LOCATION,
   NUMEROS,
   FAQ_ITEMS,
+  TAXA_URGENCIA,
 } from "../data/constants";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1692,6 +1693,26 @@ function SecaoServicos() {
               </div>
             </div>
           ))}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            fontSize: 12.5,
+            color: "var(--text-dim)",
+            marginBottom: 20,
+            padding: "10px 16px",
+            background: "var(--surface)",
+            border: "1px dashed var(--border)",
+            borderRadius: 12,
+          }}
+        >
+          <Icon name="clock" size={14} style={{ color: "var(--gold)", flexShrink: 0 }} />
+          <span>
+            <strong style={{ color: "var(--text-muted)" }}>Precisa com urgência?</strong>{" "}
+            {TAXA_URGENCIA.desc} (+R$ {TAXA_URGENCIA.preco},00)
+          </span>
         </div>
         <div
           style={{
