@@ -6,7 +6,7 @@ import {
 } from "three/addons/renderers/CSS3DRenderer.js";
 import Icon from "../components/Icon";
 import ThemeToggle from "../components/ThemeToggle";
-import WhatsAppButton, { wppUrl } from "../components/WhatsAppButton";
+import WhatsAppButton from "../components/WhatsAppButton";
 import { useApp } from "../context/AppContext";
 import { getBrandLogo } from "../data/brand";
 import {
@@ -15,7 +15,6 @@ import {
   DEPOIMENTOS,
   LOCATION,
   NUMEROS,
-  WHATSAPP_NUMBER,
 } from "../data/constants";
 
 /* ═══════════════════════════════════════════════════════════════
