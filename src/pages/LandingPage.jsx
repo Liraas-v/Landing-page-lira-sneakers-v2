@@ -242,6 +242,7 @@ function BeforeAfterSlider({ beforeSrc, afterSrc }) {
         src={afterSrc}
         alt="Depois"
         draggable="false"
+        loading="lazy"
         style={{
           position: "absolute",
           inset: 0,
@@ -261,6 +262,7 @@ function BeforeAfterSlider({ beforeSrc, afterSrc }) {
           src={beforeSrc}
           alt="Antes"
           draggable="false"
+          loading="lazy"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </div>
@@ -810,8 +812,9 @@ function Carousel3D() {
           }}
         >
           <img
-            src="/gucci_sneaker.png"
+            src="/gucci_sneaker.webp"
             alt="Tênis Gucci"
+            loading="lazy"
             style={{
               width: "100%",
               height: "auto",
@@ -1859,8 +1862,8 @@ function SecaoAntesDepois() {
         >
           <div className="reveal reveal-delay-1">
             <BeforeAfterSlider
-              beforeSrc="/antes.jpeg"
-              afterSrc="/depois.jpeg"
+              beforeSrc="/antes.webp"
+              afterSrc="/depois.webp"
             />
             <p
               style={{

@@ -1,5 +1,5 @@
 export const BRAND_LOGOS = {
-  dark: "/Logo-preta.png",
+  dark: "/Logo-preta.webp",
   light: "/Logo-branca.jpeg",
 };
 
