@@ -1274,7 +1274,7 @@ function Hero() {
           </div>
 
           <div style={{ textAlign: "center" }}>
-            <p
+            <h1
               className="bebas"
               style={{
                 fontSize: "clamp(52px,10vw,96px)",
@@ -1284,7 +1284,7 @@ function Hero() {
             >
               <span style={{ color: "var(--text)" }}>LIRA </span>
               <span className="shimmer-text">SNEAKERS</span>
-            </p>
+            </h1>
             <p
               style={{
                 fontSize: 13,
@@ -1552,6 +1552,9 @@ function SecaoServicos() {
               key={c}
               onClick={() => setFiltro(c)}
               style={{
+                minHeight: 44,
+                display: "inline-flex",
+                alignItems: "center",
                 padding: "8px 18px",
                 borderRadius: 99,
                 fontSize: 12,
