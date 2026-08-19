@@ -7,6 +7,7 @@ import {
 import Icon from "../components/Icon";
 import ThemeToggle from "../components/ThemeToggle";
 import WhatsAppButton from "../components/WhatsAppButton";
+import WhatsAppFloating from "../components/WhatsAppFloating";
 import { useApp } from "../context/AppContext";
 import { getBrandLogo } from "../data/brand";
 import {
@@ -2543,6 +2544,7 @@ export default function LandingPage() {
       <SecaoDepoimentos />
       <SecaoLocalizacao />
       <Footer />
+      <WhatsAppFloating />
       <style>{`
         .reveal{opacity:0;transform:translateY(40px) scale(0.98);transition:opacity .68s cubic-bezier(0.22,1,0.36,1),transform .68s cubic-bezier(0.22,1,0.36,1);will-change:opacity,transform}
         .reveal.visible{opacity:1;transform:translateY(0) scale(1)}
