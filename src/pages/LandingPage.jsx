@@ -6,6 +6,7 @@ import {
 } from "three/addons/renderers/CSS3DRenderer.js";
 import Icon from "../components/Icon";
 import ThemeToggle from "../components/ThemeToggle";
+import WhatsAppButton, { wppUrl } from "../components/WhatsAppButton";
 import { useApp } from "../context/AppContext";
 import { getBrandLogo } from "../data/brand";
 import {
@@ -16,10 +17,6 @@ import {
   NUMEROS,
   WHATSAPP_NUMBER,
 } from "../data/constants";
-
-const wppUrl = (msg) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-const abrirWpp = (msg) => window.open(wppUrl(msg), "_blank");
 
 /* ═══════════════════════════════════════════════════════════════
    PARTICLE BACKGROUND
@@ -1065,17 +1062,13 @@ function Navbar() {
         </nav>
         <div className="navbar-actions" style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <ThemeToggle compact />
-          <button
+          <WhatsAppButton
             className="btn btn-gold"
             style={{ fontSize: 12, padding: "8px 16px" }}
-            onClick={() =>
-              abrirWpp(
-                "Olá! Gostaria de solicitar um orçamento para o meu tênis.",
-              )
-            }
+            mensagem="Olá! Gostaria de solicitar um orçamento para o meu tênis."
           >
             <Icon name="message-circle" size={14} /> Orçamento grátis
-          </button>
+          </WhatsAppButton>
         </div>
         <button
           className="navbar-hamburger"
@@ -1143,16 +1136,14 @@ function Navbar() {
             </button>
           ))}
           <div style={{ display: "flex", gap: 10, paddingTop: 12 }}>
-            <button
+            <WhatsAppButton
               className="btn btn-gold"
               style={{ fontSize: 12, flex: 1, justifyContent: "center" }}
-              onClick={() => {
-                abrirWpp("Olá! Gostaria de solicitar um orçamento para o meu tênis.");
-                setMenuAberto(false);
-              }}
+              mensagem="Olá! Gostaria de solicitar um orçamento para o meu tênis."
+              onClick={() => setMenuAberto(false)}
             >
               <Icon name="message-circle" size={14} /> Orçamento grátis
-            </button>
+            </WhatsAppButton>
             <ThemeToggle compact />
           </div>
         </div>
@@ -1318,18 +1309,14 @@ function Hero() {
               marginTop: 8,
             }}
           >
-            <button
+            <WhatsAppButton
               className="btn btn-gold"
               style={{ fontSize: 13, padding: "13px 28px" }}
-              onClick={() =>
-                abrirWpp(
-                  "Olá! Gostaria de solicitar um orçamento para o meu tênis.",
-                )
-              }
+              mensagem="Olá! Gostaria de solicitar um orçamento para o meu tênis."
             >
               <Icon name="message-circle" size={16} /> Solicitar orçamento
               grátis
-            </button>
+            </WhatsAppButton>
             <button
               className="btn btn-ghost"
               style={{ fontSize: 13, padding: "13px 22px" }}
@@ -1685,17 +1672,13 @@ function SecaoServicos() {
                     </div>
                   )}
                 </div>
-                <button
+                <WhatsAppButton
                   className="btn btn-gold"
                   style={{ fontSize: 11, padding: "8px 14px" }}
-                  onClick={() =>
-                    abrirWpp(
-                      `Olá! Gostaria de um orçamento para: ${s.titulo} (a partir de R$ ${s.preco},00).`,
-                    )
-                  }
+                  mensagem={`Olá! Gostaria de um orçamento para: ${s.titulo} (a partir de R$ ${s.preco},00).`}
                 >
                   Solicitar
-                </button>
+                </WhatsAppButton>
               </div>
             </div>
           ))}
@@ -1729,17 +1712,13 @@ function SecaoServicos() {
               Atendimento personalizado para cada caso.
             </p>
           </div>
-          <button
+          <WhatsAppButton
             className="btn btn-gold"
             style={{ fontSize: 13, padding: "12px 24px", flexShrink: 0 }}
-            onClick={() =>
-              abrirWpp(
-                "Olá! Gostaria de solicitar um orçamento para o meu tênis.",
-              )
-            }
+            mensagem="Olá! Gostaria de solicitar um orçamento para o meu tênis."
           >
             <Icon name="message-circle" size={16} /> Solicitar orçamento
-          </button>
+          </WhatsAppButton>
         </div>
       </div>
     </section>
@@ -1955,21 +1934,17 @@ function SecaoAntesDepois() {
                 </div>
               ))}
             </div>
-            <button
+            <WhatsAppButton
               className="btn btn-gold"
               style={{
                 fontSize: 13,
                 padding: "14px 28px",
                 alignSelf: "flex-start",
               }}
-              onClick={() =>
-                abrirWpp(
-                  "Olá! Vi o resultado antes e depois no site e gostaria de um orçamento para o meu tênis.",
-                )
-              }
+              mensagem="Olá! Vi o resultado antes e depois no site e gostaria de um orçamento para o meu tênis."
             >
               <Icon name="message-circle" size={16} /> Quero esse resultado
-            </button>
+            </WhatsAppButton>
           </div>
         </div>
       </div>
@@ -2263,7 +2238,7 @@ function SecaoLocalizacao() {
               Respondemos em até 1 hora.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <button
+              <WhatsAppButton
                 className="btn btn-gold"
                 style={{
                   width: "100%",
@@ -2271,14 +2246,12 @@ function SecaoLocalizacao() {
                   fontSize: 14,
                   padding: "14px",
                 }}
-                onClick={() =>
-                  abrirWpp("Olá! Gostaria de solicitar um orçamento.")
-                }
+                mensagem="Olá! Gostaria de solicitar um orçamento."
               >
                 <Icon name="message-circle" size={18} /> Solicitar orçamento via
                 WhatsApp
-              </button>
-              <button
+              </WhatsAppButton>
+              <WhatsAppButton
                 className="btn btn-ghost"
                 style={{
                   width: "100%",
@@ -2286,14 +2259,10 @@ function SecaoLocalizacao() {
                   fontSize: 13,
                   padding: "12px",
                 }}
-                onClick={() =>
-                  abrirWpp(
-                    "Olá! Gostaria de saber mais sobre a coleta do meu tênis.",
-                  )
-                }
+                mensagem="Olá! Gostaria de saber mais sobre a coleta do meu tênis."
               >
                 <Icon name="package" size={16} /> Agendar coleta
-              </button>
+              </WhatsAppButton>
             </div>
           </div>
         </div>
@@ -2330,8 +2299,7 @@ function Footer() {
     },
     {
       label: "Orçamento",
-      action: () =>
-        abrirWpp("Olá! Gostaria de solicitar um orçamento para o meu tênis."),
+      mensagem: "Olá! Gostaria de solicitar um orçamento para o meu tênis.",
     },
   ];
   const SOC = [
@@ -2418,31 +2386,34 @@ function Footer() {
             Produto
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {NAV.map(({ label, action }) => (
-              <button
-                key={label}
-                onClick={action}
-                style={{
-                  background: "none",
-                  border: "none",
-                  textAlign: "left",
-                  cursor: "pointer",
-                  fontSize: 13,
-                  color: "var(--text-muted)",
-                  padding: 0,
-                  transition: "color .18s",
-                  fontFamily: "var(--font-body)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "var(--gold)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "var(--text-muted)";
-                }}
-              >
-                {label}
-              </button>
-            ))}
+            {NAV.map(({ label, action, mensagem }) => {
+              const sharedStyle = {
+                background: "none",
+                border: "none",
+                textAlign: "left",
+                cursor: "pointer",
+                fontSize: 13,
+                color: "var(--text-muted)",
+                padding: 0,
+                transition: "color .18s",
+                fontFamily: "var(--font-body)",
+                textDecoration: "none",
+                display: "block",
+              };
+              const hoverHandlers = {
+                onMouseEnter: (e) => { e.currentTarget.style.color = "var(--gold)"; },
+                onMouseLeave: (e) => { e.currentTarget.style.color = "var(--text-muted)"; },
+              };
+              return mensagem ? (
+                <WhatsAppButton key={label} mensagem={mensagem} style={sharedStyle} {...hoverHandlers}>
+                  {label}
+                </WhatsAppButton>
+              ) : (
+                <button key={label} onClick={action} style={sharedStyle} {...hoverHandlers}>
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>
         <div>
