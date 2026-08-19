@@ -748,10 +748,10 @@ function Carousel3D() {
     <div style={{ userSelect: "none" }}>
       {/* Viewport — tênis no centro, cards orbitando */}
       <div
+        className="carousel-viewport"
         style={{
           position: "relative",
           width: "100%",
-          height: "640px",
           overflow: "hidden",
           maskImage:
             "linear-gradient(90deg,transparent 0%,black 8%,black 92%,transparent 100%)",
@@ -2503,6 +2503,7 @@ function Footer() {
       }}
     >
       <div
+        className="landing-footer-grid"
         style={{
           maxWidth: 1100,
           margin: "0 auto",
@@ -2722,6 +2723,7 @@ export default function LandingPage() {
         .section-panel{background:var(--surface);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow-card)}
         .section-title{position:relative}
         .section-title::after{content:"";position:absolute;left:50%;bottom:-10px;width:100px;height:4px;background:linear-gradient(90deg,transparent,rgba(245,200,66,.8),transparent);transform:translateX(-50%);border-radius:999px}
+        .carousel-viewport{height:640px;}
         @media(max-width:900px){
           .reveal{transform:translateY(24px) scale(0.99)}
         }
@@ -2729,8 +2731,13 @@ export default function LandingPage() {
           .landing-hero-grid{grid-template-columns:1fr !important; gap:40px !important;}
           .landing-ad-grid{grid-template-columns:1fr !important; gap:36px !important;}
           .landing-loc-grid{grid-template-columns:1fr !important; gap:20px !important;}
+          .landing-footer-grid{grid-template-columns:1fr !important; gap:32px !important;}
+          .carousel-viewport{height:480px !important;}
           .landing-section-pad{padding:60px 0 !important;}
           .landing-inner-pad{padding:0 16px !important;}
+        }
+        @media(min-width:769px) and (max-width:1024px) and (orientation:landscape){
+          .carousel-viewport{height:420px !important;}
         }
       `}</style>
     </div>
