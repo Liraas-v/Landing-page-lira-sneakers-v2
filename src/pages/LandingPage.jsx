@@ -983,7 +983,9 @@ function Navbar() {
       <style>{`
         @media (max-width: 768px) {
           .navbar-links { display: none !important; }
-          .navbar-actions { display: none !important; }
+          .navbar-actions { gap: 8px !important; }
+          .navbar-theme-desktop { display: none !important; }
+          .navbar-actions .btn { font-size: 11px !important; padding: 7px 12px !important; }
           .navbar-hamburger { display: flex !important; }
         }
         @media (min-width: 769px) {
@@ -1061,7 +1063,9 @@ function Navbar() {
           ))}
         </nav>
         <div className="navbar-actions" style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          <ThemeToggle compact />
+          <span className="navbar-theme-desktop">
+            <ThemeToggle compact />
+          </span>
           <WhatsAppButton
             className="btn btn-gold"
             style={{ fontSize: 12, padding: "8px 16px" }}
