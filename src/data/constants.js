@@ -142,43 +142,43 @@ export const PRAZOS = {
 export const DEPOIMENTOS = [
   {
     id: "d1",
-    nome: "Lucas M.",
+    nome: "Cliente Lira Sneakers",
     cidade: "São Paulo, SP",
-    texto:
-      "Mandei meu Air Jordan 1 que estava todo manchado. Voltou como se fosse novo. Valeu cada centavo.",
+    texto: "Que trabalho incrível! Muito obrigada, ficou perfeito.",
     servico: "Limpeza Completa",
     nota: 5,
     inicial: "L",
+    print: "/depoimentos/print-01.webp",
   },
   {
     id: "d2",
-    nome: "Fernanda R.",
-    cidade: "Santo André, SP",
-    texto:
-      "Yeezy 350 com a entressola amarelada. Depois da pintura ficou perfeito. Atendimento rápido e muito cuidado.",
-    servico: "Pintura Entressola",
+    nome: "Cliente Lira Sneakers",
+    cidade: "São Paulo, SP",
+    texto: "Slk irmão, você é fera! Parece que acabei de comprar. Trampo foda.",
+    servico: "Limpeza Premium (Grife)",
     nota: 5,
-    inicial: "F",
+    inicial: "L",
+    print: "/depoimentos/print-02.webp",
   },
   {
     id: "d3",
-    nome: "Gabriel S.",
-    cidade: "São Bernardo, SP",
-    texto:
-      "Impermeabilizei dois pares antes do inverno. Processo rápido, só 2 dias. Recomendo demais.",
-    servico: "Impermeabilização",
+    nome: "Enzo",
+    cidade: "São Paulo, SP",
+    texto: "Ficou zero! Você é zika, mano.",
+    servico: "Limpeza Completa",
     nota: 5,
-    inicial: "G",
+    inicial: "E",
+    print: "/depoimentos/print-03.webp",
   },
   {
     id: "d4",
-    nome: "Camila T.",
+    nome: "Fêrnanda A.",
     cidade: "São Paulo, SP",
-    texto:
-      "Meu New Balance de camurça parecia perdido. A restauração salvou o tênis. Nota 10.",
-    servico: "Restauração de Camurça",
+    texto: "Ficaram perfeitos! Eu amei. Gratidão por tanto capricho e cuidado.",
+    servico: "Limpeza Premium (Grife)",
     nota: 5,
-    inicial: "C",
+    inicial: "F",
+    print: "/depoimentos/print-04.webp",
   },
 ];
 
