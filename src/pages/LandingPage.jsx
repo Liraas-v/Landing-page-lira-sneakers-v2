@@ -16,6 +16,7 @@ import {
   DEPOIMENTOS,
   LOCATION,
   NUMEROS,
+  FAQ_ITEMS,
 } from "../data/constants";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1037,6 +1038,7 @@ function Navbar() {
             ["antes-depois", "Antes & Depois"],
             ["depoimentos", "Depoimentos"],
             ["localizacao", "Localização"],
+            ["faq", "Dúvidas"],
           ].map(([id, label]) => (
             <button
               key={id}
@@ -1117,6 +1119,7 @@ function Navbar() {
             ["antes-depois", "Antes & Depois"],
             ["depoimentos", "Depoimentos"],
             ["localizacao", "Localização"],
+            ["faq", "Dúvidas"],
           ].map(([id, label]) => (
             <button
               key={id}
@@ -2279,6 +2282,119 @@ function SecaoLocalizacao() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   FAQ — accordion, partículas no fundo
+   ═══════════════════════════════════════════════════════════════ */
+function SecaoFaq() {
+  const [abertoId, setAbertoId] = useState(null);
+  return (
+    <section
+      id="faq"
+      style={{ position: "relative", overflow: "hidden", padding: "80px 0", background: "var(--bg)" }}
+    >
+      <ParticleBackground id="faq" />
+      <div
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: 760,
+          margin: "0 auto",
+          padding: "0 24px",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 44 }}>
+          <p
+            style={{
+              fontSize: 11,
+              fontWeight: 900,
+              color: "var(--gold)",
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
+              marginBottom: 10,
+            }}
+          >
+            Dúvidas frequentes
+          </p>
+          <h2
+            className="bebas section-title reveal reveal-delay-1"
+            style={{ fontSize: "clamp(36px,5vw,52px)", letterSpacing: "0.04em" }}
+          >
+            PERGUNTAS FREQUENTES
+          </h2>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {FAQ_ITEMS.map((item) => {
+            const aberto = abertoId === item.id;
+            return (
+              <div
+                key={item.id}
+                style={{
+                  background: "var(--surface)",
+                  border: "1px solid var(--border)",
+                  borderRadius: 14,
+                  overflow: "hidden",
+                }}
+              >
+                <button
+                  onClick={() => setAbertoId(aberto ? null : item.id)}
+                  aria-expanded={aberto}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 12,
+                    padding: "16px 20px",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  <span style={{ fontSize: 14, fontWeight: 700, color: "var(--text)" }}>
+                    {item.pergunta}
+                  </span>
+                  <Icon
+                    name={aberto ? "chevron-up" : "chevron-down"}
+                    size={18}
+                    style={{ color: "var(--gold)", flexShrink: 0 }}
+                  />
+                </button>
+                {aberto && (
+                  <p
+                    style={{
+                      fontSize: 13.5,
+                      color: "var(--text-muted)",
+                      lineHeight: 1.65,
+                      padding: "0 20px 18px",
+                      margin: 0,
+                    }}
+                  >
+                    {item.resposta}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ textAlign: "center", marginTop: 32 }}>
+          <p style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 14 }}>
+            Não achou sua dúvida aqui?
+          </p>
+          <WhatsAppButton
+            className="btn btn-ghost"
+            style={{ fontSize: 13, padding: "12px 22px" }}
+            mensagem="Olá! Tenho uma dúvida que não vi no site."
+          >
+            <Icon name="message-circle" size={15} /> Falar com a gente
+          </WhatsAppButton>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════════════════════════ */
 function Footer() {
@@ -2302,6 +2418,13 @@ function Footer() {
       action: () =>
         document
           .getElementById("depoimentos")
+          ?.scrollIntoView({ behavior: "smooth" }),
+    },
+    {
+      label: "Dúvidas",
+      action: () =>
+        document
+          .getElementById("faq")
           ?.scrollIntoView({ behavior: "smooth" }),
     },
     {
@@ -2550,6 +2673,7 @@ export default function LandingPage() {
       <SecaoAntesDepois />
       <SecaoDepoimentos />
       <SecaoLocalizacao />
+      <SecaoFaq />
       <Footer />
       <WhatsAppFloating />
       <style>{`

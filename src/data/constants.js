@@ -115,6 +115,12 @@ export const FAQ_ITEMS = [
     resposta:
       "Atualizamos você por WhatsApp em cada etapa do processo, desde a chegada do tênis até a entrega.",
   },
+  {
+    id: "f7",
+    pergunta: "E se algo der errado com o meu tênis durante o processo?",
+    resposta:
+      "Cada par passa por uma avaliação antes de iniciarmos qualquer serviço, e fotografamos o estado inicial. Se identificarmos um risco específico do material (ex. couro muito desgastado, colas antigas), avisamos antes de prosseguir. Qualquer problema é comunicado imediatamente pelo WhatsApp — não escondemos.",
+  },
 ];
 
 export const WHATSAPP_NUMBER = "5511930733933";
