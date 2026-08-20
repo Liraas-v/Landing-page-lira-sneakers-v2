@@ -497,6 +497,14 @@ function Carousel3D() {
             inset: 0,
             width: "100%",
             height: "100%",
+            // z-index precisa estar aqui, no elemento que é irmão direto do
+            // tênis central (não só no renderer.domElement, dois níveis
+            // abaixo): como este div não tinha z-index próprio (z-index:auto,
+            // sem stacking context), o z-index:3 do renderer.domElement não
+            // ficava garantido acima do z-index:2 do tênis — o carrossel
+            // "vazava" atrás do tênis durante a rotação. Ver Carousel3D
+            // abaixo, onde renderer.domElement também recebe zIndex:3.
+            zIndex: 3,
           }}
         />
       </div>
