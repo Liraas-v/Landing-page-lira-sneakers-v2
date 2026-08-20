@@ -168,11 +168,18 @@ function buildCardEl(d) {
 
   const renderText = () => {
     wrap.innerHTML = "";
+    wrap.style.height = "200px"; // desfaz o crescimento da variante com print,
+    // caso o <img> falhe (evento "error") e caia pro fallback de texto puro
     wrap.style.padding = "18px 20px";
     wrap.appendChild(buildTextContent(d));
   };
 
   if (d.print) {
+    // Card com print precisa de mais altura que o card de texto: a legenda
+    // (badge + avatar + nome + cidade) sozinha já soma ~86px de conteúdo
+    // (medido ao vivo), e sobravam só 200-150=50px com a altura padrão do
+    // card — cortava o avatar e o nome embaixo. Cresce só esta variante.
+    wrap.style.height = "250px";
     const img = document.createElement("img");
     img.src = d.print;
     img.alt = `Print de conversa — ${d.nome}`;
