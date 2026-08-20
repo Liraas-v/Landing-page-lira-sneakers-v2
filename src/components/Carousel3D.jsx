@@ -310,8 +310,14 @@ function Carousel3D() {
         card.style.zIndex = Math.round(depth * 100);
         card.style.pointerEvents = depth > 0.48 ? "auto" : "none";
         const isHov = hoveredRef.current === i;
-        const isFront = depth > 0.88 && hoveredRef.current === null;
-        frontRef.current[i] = isFront;
+        const isNearFront = depth > 0.88;
+        const isFront = isNearFront && hoveredRef.current === null;
+        // Clicável sempre que o card está de frente pra câmera, mesmo com o
+        // mouse em cima dele — não usar `isFront` aqui: essa variável exclui
+        // hover de propósito (pro estilo do glow), mas o clique só existe
+        // depois de passar o mouse por cima, então excluir hover deixava o
+        // ramo do lightbox inalcançável na prática.
+        frontRef.current[i] = isNearFront;
         if (isHov) {
           card.style.border = "1px solid var(--gold-border)";
           card.style.boxShadow =
