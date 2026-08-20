@@ -2150,7 +2150,14 @@ export default function LandingPage() {
         .reveal-delay-5{transition-delay:.40s}
         .hero-panel{background:color-mix(in srgb,var(--surface) 88%,transparent);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow-card);backdrop-filter:blur(14px)}
         .feature-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow-card);transition:transform .28s,border-color .28s,box-shadow .28s}
-        .feature-card:hover{transform:translateY(-8px);border-color:var(--gold-border);box-shadow:var(--shadow-gold)}
+        /* :hover fica "grudado" em qualquer toque em telas touchscreen (não
+           só mobile — tablets e notebooks touch também), já que o navegador
+           simula hover no tap. Isso fazia o card subir 8px ao tocar e sair
+           de linha dos vizinhos. Só aplica em dispositivos com hover real
+           (mouse), detectado via media feature, não por largura de tela. */
+        @media(hover:hover) and (pointer:fine){
+          .feature-card:hover{transform:translateY(-8px);border-color:var(--gold-border);box-shadow:var(--shadow-gold)}
+        }
         .section-panel{background:var(--surface);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow-card)}
         .section-title{position:relative}
         .section-title::after{content:"";position:absolute;left:50%;bottom:-10px;width:100px;height:4px;background:linear-gradient(90deg,transparent,rgba(245,200,66,.8),transparent);transform:translateX(-50%);border-radius:999px}
