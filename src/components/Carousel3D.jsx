@@ -205,6 +205,7 @@ function Carousel3D() {
   const dragging = useRef(false);
   const dragStartX = useRef(0);
   const dragBase = useRef(0);
+  const pointerCaptured = useRef(false);
   const hoveredRef = useRef(null);
   const clockRef = useRef(0);
   const objectsRef = useRef([]);
@@ -347,13 +348,21 @@ function Carousel3D() {
       dragging.current = true;
       dragStartX.current = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
       dragBase.current = targetAngle.current;
-      try {
-        e.currentTarget?.setPointerCapture?.(e.pointerId);
-      } catch (_) {}
+      pointerCaptured.current = false;
+      // Não captura o ponteiro aqui: um clique simples também passa por
+      // pointerdown, e capturar de cara redireciona o "click" resultante
+      // pro próprio container (em vez do card), impedindo abrir o lightbox.
+      // A captura só entra em onMoveP, quando o gesto vira arrasto de fato.
     };
     const onMoveP = (e) => {
       if (!dragging.current) return;
       const x = e.clientX ?? e.touches?.[0]?.clientX ?? dragStartX.current;
+      if (!pointerCaptured.current && Math.abs(x - dragStartX.current) > 4) {
+        pointerCaptured.current = true;
+        try {
+          e.currentTarget?.setPointerCapture?.(e.pointerId);
+        } catch (_) {}
+      }
       targetAngle.current = dragBase.current + (x - dragStartX.current) * 0.003;
     };
     const onUp = () => {
