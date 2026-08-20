@@ -103,4 +103,4 @@ Para desabilitar de fato (só recomendado em CI/debug), remova a linha `"postbui
 
 ## Documentação adicional
 
-`docs/superpowers/` guarda spec e plano de implementação de features específicas (ex.: suporte a prints reais de depoimentos), para referência histórica de decisões de design.
+`docs/` guarda notas internas de planejamento de features específicas (ex.: suporte a prints reais de depoimentos), para referência histórica de decisões de design.
