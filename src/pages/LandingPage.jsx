@@ -987,6 +987,7 @@ function SecaoServicos() {
           ))}
         </div>
         <div
+          className="landing-servicos-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))",
@@ -1098,6 +1099,20 @@ function SecaoServicos() {
             </div>
           ))}
         </div>
+        <p
+          className="landing-servicos-hint"
+          style={{
+            display: "none",
+            textAlign: "center",
+            fontSize: 11,
+            color: "var(--text-dim)",
+            marginTop: 12,
+            marginBottom: 32,
+            letterSpacing: "0.1em",
+          }}
+        >
+          ← Arraste para ver mais serviços →
+        </p>
         <div
           style={{
             display: "flex",
@@ -2150,6 +2165,25 @@ export default function LandingPage() {
           .landing-footer-grid{grid-template-columns:1fr !important; gap:32px !important;}
           .carousel-viewport{height:480px !important;}
           .landing-section-pad{padding:60px 0 !important;}
+          /* Serviços em mobile viram carrossel horizontal (1 card + peek do
+             próximo) em vez de empilhar verticalmente — reduz muito a altura
+             da seção, já que são 10 cards. Desktop mantém o grid normal. */
+          .landing-servicos-grid{
+            display:flex !important;
+            grid-template-columns:none !important;
+            overflow-x:auto !important;
+            scroll-snap-type:x mandatory !important;
+            margin-bottom:16px !important;
+            padding-bottom:4px !important;
+            scrollbar-width:none !important;
+          }
+          .landing-servicos-grid::-webkit-scrollbar{display:none !important;}
+          .landing-servicos-grid .feature-card{
+            flex:0 0 85% !important;
+            width:85% !important;
+            scroll-snap-align:start !important;
+          }
+          .landing-servicos-hint{display:block !important;}
           .landing-inner-pad{padding:0 16px !important;}
         }
         @media(min-width:769px) and (max-width:1024px) and (orientation:landscape){
