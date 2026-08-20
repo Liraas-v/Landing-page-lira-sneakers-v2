@@ -18,7 +18,7 @@ import { fileURLToPath } from "node:url";
 import puppeteer from "puppeteer";
 
 const DIST = fileURLToPath(new URL("../dist/", import.meta.url));
-const PORT = 4173;
+const HOST = "127.0.0.1";
 
 const MIME = {
   ".html": "text/html",
@@ -38,6 +38,14 @@ function startServer() {
     const server = createServer(async (req, res) => {
       const urlPath = req.url.split("?")[0];
       const filePath = join(DIST, urlPath === "/" ? "index.html" : urlPath);
+      // Garante que o path resolvido continua dentro de dist/ mesmo que
+      // urlPath contenha "..": join() normaliza ".." mas não impede que
+      // o resultado final escape do diretório servido.
+      if (!filePath.startsWith(DIST)) {
+        res.writeHead(403);
+        res.end();
+        return;
+      }
       try {
         const data = await readFile(filePath);
         res.writeHead(200, {
@@ -50,7 +58,10 @@ function startServer() {
       }
     });
     server.on("error", reject);
-    server.listen(PORT, () => resolve(server));
+    // Porta 0 = o SO escolhe uma porta livre (evita colisão com `vite
+    // preview`, que também usa 4173 por padrão). Bind só em localhost:
+    // este servidor é efêmero e só o Chromium local deve acessá-lo.
+    server.listen(0, HOST, () => resolve(server));
   });
 }
 
@@ -58,12 +69,13 @@ let server;
 let browser;
 try {
   server = await startServer();
+  const { port } = server.address();
   browser = await puppeteer.launch({
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
-  await page.goto(`http://localhost:${PORT}/`, { waitUntil: "networkidle0" });
+  await page.goto(`http://${HOST}:${port}/`, { waitUntil: "networkidle0" });
   // Espera um elemento que só existe depois do React montar as seções
   // reais (não é o mesmo componente lazy-carregado do Task 12 — este
   // seletor é da seção de Serviços, que monta de imediato).
