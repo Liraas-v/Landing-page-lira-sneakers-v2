@@ -5,6 +5,12 @@
 // dist/index.html com o HTML já renderizado — assim rastreadores que não
 // executam JavaScript (ou demoram para executar) recebem texto de
 // verdade, não só a casca <div id="root">.
+//
+// Pré-renderização é uma melhoria de SEO opcional: qualquer falha aqui
+// (Puppeteer sem libs de sistema, timeout de rede, porta ocupada) é
+// capturada e reportada como aviso — o processo termina com sucesso e
+// dist/index.html fica com a casca gerada pelo Vite, sem derrubar o
+// `npm run build` nem o deploy.
 import { createServer } from "node:http";
 import { readFile, writeFile } from "node:fs/promises";
 import { extname, join } from "node:path";
@@ -48,12 +54,14 @@ function startServer() {
   });
 }
 
-const server = await startServer();
-const browser = await puppeteer.launch({
-  headless: true,
-  args: ["--no-sandbox", "--disable-setuid-sandbox"],
-});
+let server;
+let browser;
 try {
+  server = await startServer();
+  browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
   await page.goto(`http://localhost:${PORT}/`, { waitUntil: "networkidle0" });
   // Espera um elemento que só existe depois do React montar as seções
@@ -72,7 +80,12 @@ try {
   );
   await writeFile(join(DIST, "index.html"), html, "utf-8");
   console.log("Pré-renderização concluída: dist/index.html agora tem o HTML renderizado.");
+} catch (error) {
+  console.warn(
+    "Aviso: pré-renderização falhou, dist/index.html permanece com a casca gerada pelo Vite.",
+    error,
+  );
 } finally {
-  await browser.close();
-  server.close();
+  await browser?.close();
+  server?.close();
 }
