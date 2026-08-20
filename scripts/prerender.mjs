@@ -28,7 +28,7 @@ const MIME = {
 };
 
 function startServer() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const server = createServer(async (req, res) => {
       const urlPath = req.url.split("?")[0];
       const filePath = join(DIST, urlPath === "/" ? "index.html" : urlPath);
@@ -43,12 +43,16 @@ function startServer() {
         res.end();
       }
     });
+    server.on("error", reject);
     server.listen(PORT, () => resolve(server));
   });
 }
 
 const server = await startServer();
-const browser = await puppeteer.launch({ headless: true });
+const browser = await puppeteer.launch({
+  headless: true,
+  args: ["--no-sandbox", "--disable-setuid-sandbox"],
+});
 try {
   const page = await browser.newPage();
   await page.goto(`http://localhost:${PORT}/`, { waitUntil: "networkidle0" });
