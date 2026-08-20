@@ -60,6 +60,13 @@ try {
   // reais (não é o mesmo componente lazy-carregado do Task 12 — este
   // seletor é da seção de Serviços, que monta de imediato).
   await page.waitForSelector("#servicos-section", { timeout: 15000 });
+  // As seções usam a classe "reveal" (opacity:0 até entrar na viewport
+  // via IntersectionObserver). Sem isso, só o hero (dentro da viewport
+  // 800x600 padrão do Puppeteer) sai "visible" no HTML estático, e
+  // qualquer consumidor que não executa JS vê a página quase em branco.
+  await page.evaluate(() => {
+    document.querySelectorAll(".reveal").forEach((el) => el.classList.add("visible"));
+  });
   const html = await page.evaluate(
     () => "<!doctype html>\n" + document.documentElement.outerHTML,
   );
