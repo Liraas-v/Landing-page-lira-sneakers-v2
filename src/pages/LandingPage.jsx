@@ -703,7 +703,7 @@ function Hero() {
                 fontSize: 15,
                 color: "var(--text)",
                 fontWeight: 600,
-                marginTop: 14,
+                margin: "14px auto 0",
                 maxWidth: 360,
               }}
             >
