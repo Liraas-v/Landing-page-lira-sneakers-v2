@@ -464,6 +464,17 @@ main[role="main"] {
 .btn-gold:hover {
   background: #f7d060;
 }
+/* Tema claro: --gold ficou mais escuro (Task 6, contraste do dourado
+   como texto) e o texto quase-preto de .btn-gold deixou de passar AA
+   como fundo (3,72:1). Branco sobre o --gold do tema claro passa AA
+   (5,32:1); o hover usa --gold-dark, escuro o bastante para manter o
+   texto branco legível (7,50:1). Tema escuro não muda. */
+:root[data-theme="light"] .btn-gold {
+  color: #ffffff;
+}
+:root[data-theme="light"] .btn-gold:hover {
+  background: var(--gold-dark);
+}
 .btn-ghost {
   background: transparent;
   color: var(--gold);
