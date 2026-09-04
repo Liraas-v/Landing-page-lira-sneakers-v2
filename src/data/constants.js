@@ -4,7 +4,7 @@ export const SERVICOS = [
     titulo: "Limpeza Completa",
     desc: "Externa, interna, sola, palmilhas, cadarços e odores.",
     categoria: "Limpeza",
-    preco: 70,
+    preco: 60,
   },
   {
     id: 2,
@@ -46,7 +46,7 @@ export const SERVICOS = [
     titulo: "Hidratação de Camurça",
     desc: "Nutrição profunda para suede.",
     categoria: "Couro",
-    preco: 50,
+    preco: 30,
   },
   {
     id: 8,
@@ -60,14 +60,14 @@ export const SERVICOS = [
     titulo: "Colagem",
     desc: "Reparo estrutural com cola profissional.",
     categoria: "Reparo",
-    preco: 60,
+    preco: 50,
   },
   {
     id: 10,
     titulo: "Impermeabilização",
     desc: "Proteção contra líquidos e manchas.",
     categoria: "Proteção",
-    preco: 35,
+    preco: 40,
   },
 ];
 
