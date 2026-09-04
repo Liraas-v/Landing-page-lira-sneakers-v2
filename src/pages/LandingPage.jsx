@@ -824,7 +824,7 @@ function Hero() {
               }}
             >
               Restauração, limpeza e proteção especializada para seus
-              sneakers. Do básico ao luxo — tratamos cada par com o cuidado
+              sneakers. Do básico ao luxo, tratamos cada par com o cuidado
               que ele merece.
             </p>
             <button
@@ -946,7 +946,7 @@ function SecaoServicos() {
               margin: "12px auto 0",
             }}
           >
-            Preços a partir de — valor final confirmado após avaliação do estado
+            Preço final confirmado após avaliação do estado
             do tênis.
           </p>
         </div>
@@ -1305,8 +1305,8 @@ function SecaoAntesDepois() {
                   marginBottom: 14,
                 }}
               >
-                De destruído a<br />
-                <span style={{ color: "var(--gold)" }}>novo de fábrica</span>
+                Uma nova vida<br />
+                <span style={{ color: "var(--gold)" }}>para o seu tênis</span>
               </h3>
               <p
                 style={{
@@ -1316,7 +1316,7 @@ function SecaoAntesDepois() {
                 }}
               >
                 Limpeza profunda, remoção de manchas oxidadas, condicionamento
-                do couro e clarificação da sola. Resultado em 3 dias.
+                do couro e clarificação da sola. Resultado em 5 dias.
               </p>
             </div>
             <div
@@ -1327,7 +1327,7 @@ function SecaoAntesDepois() {
               }}
             >
               {[
-                { icon: "clock", label: "Prazo", value: "3 dias úteis" },
+                { icon: "clock", label: "Prazo", value: "5 dias úteis" },
                 {
                   icon: "droplets",
                   label: "Processo",
