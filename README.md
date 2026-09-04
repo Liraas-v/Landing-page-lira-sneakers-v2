@@ -2,7 +2,7 @@
 
 Landing page da **Lira Sneakers Lab**, lavanderia especializada em limpeza, restauração e proteção de sneakers em São Paulo. Site de uma página só, focado em converter visita em contato via WhatsApp.
 
-**Produção:** https://landing-page-lira-sneakers.vercel.app *(ajustar se o domínio mudar)*
+**Produção:** https://landing-page-lira-sneakers-v2.vercel.app/
 
 ## Stack
 
